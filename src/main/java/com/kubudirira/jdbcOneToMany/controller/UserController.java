@@ -26,12 +26,15 @@ public class UserController {
     public void addUser( @RequestBody User user){
         userRepository.addUser(user);
     }
-
-
-
+    
     @PostMapping("/addPost/{id}")
     public void addPostToUser( @PathVariable("id") int user_id,@RequestBody Post post){
          userRepository.addPostToUser(user_id, post);
     }
 
+    @PutMapping("/updateName/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable("id") int user_id, @RequestParam String newFirstName, @RequestParam String newLastName, @RequestParam String email) {
+        User updateUser = userService.updateUser(user_id, newFirstName, newLastName, email);
+        return userRepository.updateUser(user_id, newFirstName, newLastName, email);
+    }
 }
