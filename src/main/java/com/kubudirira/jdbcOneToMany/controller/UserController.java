@@ -33,7 +33,7 @@ public class UserController {
     }
 
     @PutMapping("/updateName/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable("id") int user_id, @RequestParam String newFirstName, @RequestParam String newLastName, @RequestParam String email) {
+    public List<User> updateUser(@PathVariable("id") int user_id, @RequestParam String newFirstName, @RequestParam String newLastName, @RequestParam String email) {
         User updateUser = userService.updateUser(user_id, newFirstName, newLastName, email);
         return userRepository.updateUser(user_id, newFirstName, newLastName, email);
     }
